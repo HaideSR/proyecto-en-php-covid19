@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+//Route::view('vistaqr','View_CodigoQR/vistaqr');
+Route::get('vistaqr/', 'CodigoQRController@mostrar');
+Route::get('vistaqrgen/', 'CodigoQRController@generar');
+
+
+Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
