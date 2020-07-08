@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'ProyectoCovid',
+    'name' => 'Control Pacientes',
     'manifest' => [
         'name' => env('APP_NAME', 'Control Covid'),
         'short_name' => 'PWA',
