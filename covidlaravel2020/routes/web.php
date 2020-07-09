@@ -29,3 +29,5 @@ Route::get('vistaqrgen/', 'CodigoQRController@generar');
 
 
 Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
+
+Route::resource('pacientes', 'PacienteController');
