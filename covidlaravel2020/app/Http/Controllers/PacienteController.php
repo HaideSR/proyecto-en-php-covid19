@@ -47,7 +47,7 @@ class PacienteController extends Controller
             "Celular"     => $input["celular"],
             
         ]);
-        return view("pacientes.listar")->withPaciente($paciente); // 
+        return view("pacientes.ver")->withPaciente($paciente); // 
     }
 
     /**
@@ -56,9 +56,9 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Paciente $paciente)
     {
-        //
+        return view("pacientes.ver")->withPaciente($paciente);
     }
 
     /**
@@ -67,9 +67,9 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Paciente $paciente)
     {
-        //
+        return view("pacientes.edit")->withPaciente($paciente);
     }
 
     /**
@@ -79,9 +79,19 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Paciente $paciente)
     {
-        //
+        $input = $request->all();
+        $paciente ->nombre = $input["nombre"];
+        $paciente->apellido = $input["apellido"];
+        $paciente->ci = $input["ci"];
+        $paciente ->correo = $input["correo"];
+        $paciente->celular = $input["celular"];  
+        if ($paciente->save()) {
+            # code...
+            return view("pacientes.ver")->withPaciente($paciente);
+        }
+        abort(500);
     }
 
     /**
@@ -90,8 +100,9 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Paciente $paciente)
     {
-        //
+        $paciente->delete();
+        return view("pacientes.ver")->withPaciente($paciente);
     }
 }
