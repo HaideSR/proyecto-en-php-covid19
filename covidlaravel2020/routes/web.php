@@ -17,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pacientes', 'PacienteController');
+Route::resource('pacientes', 'PacienteController',[
+    'only'         => ['index',"show","edit","store","update","create", "destroy"],
+]);
+
