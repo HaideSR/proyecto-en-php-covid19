@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -39,6 +40,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $datos = request()->except('_token');
+        $datos['password'] = Hash::make($datos['password']);
+        //
         User::insert($datos);
         return redirect('/user');
         // return response()->json($datos);
@@ -76,19 +79,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)    {
-
-        $POST = User::findOrFail($request->id);
-        $POST->update([
-            'ci' => $request->ci,
-            'celular' => $request->celular
-            ]);
+        $datoUser = request()->except(['_token','_method']);
+        User::where('id','=',$id)->update($datoUser);
+    //
         return redirect('user');
-    //    $user =  $request->validate([
-    //         'email' => ['required', 'min:3', User::unique('email')],
-    //         'ci' => 'required',
-    //     ]);
-    //     $request->update($user);
-    //     return "Actualizando ";
     }
 
     /**

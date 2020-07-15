@@ -1,8 +1,9 @@
 @extends('welcome')
 @section('Usuarios')
-    <form action="{{ url("/user") }}" method="GET">
+    <form action="{{ url("/user/".$user->id) }}" method="POST">
         {{csrf_field()}}
-        @method('GET')
+        @method('PATCH')
+        {{-- {{method('PATCH')}} --}}
         <li> Ci<input type="text" name="ci" value="{{ old('ci', $user->ci) }}" required></li>
         <li> Nombres<input type="text" name="nombres" value="{{ old('nombres', $user->nombres) }}" required></li>
         <li> Apellido Paterno<input type="text" name="apellidopaterno" value="{{ old('apellidopaterno', $user->apellidopaterno) }}"></li>
@@ -11,10 +12,9 @@
             <!-- Cargo<input type="text" name="cargo"> -->
             <label>Cargo</label>
             <select name="cargo" required>
-                <option >--Seleccione un cargo--</option>
-                <option value="Administrador">Administrador</option>
+                <option value="" >--Seleccione un cargo--</option>
+                <option value="Administrador" >Administrador</option>
                 <option value="Supervisor">Supervisor</option>
-
             </select>
         </li>
         <li> Email<input type="text" name="email" value="{{ old('email', $user->email) }}"></li>

@@ -16,7 +16,7 @@
 
             </select>
         </li>
-        <li> Email<input type="text" name="email"></li>
+        <li> Email<input type="email" name="email"></li>
         <li> Password<input type="password" name="password"></li>
         <li> Celular<input type="text" name="celular"></li>
         <li> Direccion<input type="text" name="direccion"></li>

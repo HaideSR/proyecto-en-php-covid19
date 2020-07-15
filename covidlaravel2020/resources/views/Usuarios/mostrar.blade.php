@@ -31,7 +31,7 @@
                     <form method="POST" action="{{ url("user/{$user->id}") }}">
                         @csrf
                         @method('DELETE')
-                        <button class="btn-s btn-red" type="submit">Eliminar</button>
+                        <button class="btn-s btn-red" onclick="return confirm('¿Esta seguro de eliminar?')" type="submit">Eliminar</button>
                       </form>
                     {{-- <a class="btn-s btn-red" href="user/destroy/{{$user->id}}">Eliminar</a> --}}
                     <a class="btn-s btn-green" href="user/{{$user->id}}/edit">Editar</a>
