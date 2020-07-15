@@ -1,3 +1,8 @@
+@extends('layouts.app')
+@section('title')
+Insertar paciente
+@endsection
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +12,12 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <div class="container">
+ <div class="list-group">
+      <div class="row justify-content-center">
+      <div class="card">
+                  <div class="card-header">{{ __('Generar codigos QR') }}</div>
+                    <div class="card-body"> 
     <form action="{{url("vistaqrgen")}}" method="GET">
 
             <input list="cantidadgen" name="cantidadgen" >
@@ -26,7 +36,7 @@
             </datalist>
 
 
-            <button type="submit">Generar</button>
+            <button type="submit" class="btn btn-info pull-right">Generar</button>
         </form>
     </div>
     <div>
@@ -52,6 +62,11 @@
             </tr>
         </table>
     </div>
-
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 </body>
 </html>
+@endsection

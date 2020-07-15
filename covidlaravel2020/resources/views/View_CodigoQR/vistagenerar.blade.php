@@ -1,3 +1,8 @@
+@extends('layouts.app')
+@section('title')
+Insertar paciente
+@endsection
+@section('content')
 <h1>Todos los codigos QR generados</h1>
 <table>
     <thead>
@@ -19,3 +24,4 @@
 
 </table>
 <a href="{{url('vistaqr')}}">todos los codigos</a>
+@endsection
