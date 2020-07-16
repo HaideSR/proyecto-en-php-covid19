@@ -23,3 +23,7 @@ Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
 Route::resource('pacientes', 'PacienteController');
 
 Route::resource('view_Asignados', 'AsignacionController');
+Route::resource('pacientes', 'PacienteController',[
+    'only'         => ['index',"show","edit","store","update","create", "destroy"],
+]);
+
