@@ -21,8 +21,8 @@ class CreatePaciente extends Migration
             $table->string('correo')->unique();
             $table->integer('Celular');
             $table->timestamps();
-        
-        }); 
+
+        });
     }
 
     /**
@@ -32,6 +32,6 @@ class CreatePaciente extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paciente');
+        Schema::dropIfExists('pacientes');
     }
 }
