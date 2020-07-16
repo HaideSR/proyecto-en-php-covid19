@@ -60,7 +60,7 @@
                                     <a class="nav-link" href="{{ route('pacientes.create') }}">{{ __('Registrar') }}</a>
                                 </li>
                             <!--@if (Route::has('Registrar'))-->
-                                  
+
                             <!--@endif-->
                         @else
                             <li class="nav-item dropdown">

@@ -16,7 +16,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "silviolleite/laravelpwa": "^2.0",
-        "simplesoftwareio/simple-qrcode": "^3.0"
+        "simplesoftwareio/simple-qrcode": "^3.0",
+        "laravel/ui": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
