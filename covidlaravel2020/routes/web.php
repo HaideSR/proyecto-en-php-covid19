@@ -41,3 +41,8 @@ Route::resource('pacientes', 'PacienteController',[
 
 
 // Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+//rutas para la camara
+Route::view('capturar', 'View_Camara/capturar');
+Route::get('decodificado','CamaraController@readerqr');

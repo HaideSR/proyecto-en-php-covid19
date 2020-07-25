@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29d74bd8e28e7a97279eef81b224d44c",
+    "content-hash": "3f9f64dd2f3d2647288b573f8bb86cb6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -955,6 +955,56 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
+            "name": "khanamiryan/qrcode-detector-decoder",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khanamiryan/php-qrcode-detector-decoder.git",
+                "reference": "89b57f2d9939dd57394b83f6ccbd3e1a74659e34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khanamiryan/php-qrcode-detector-decoder/zipball/89b57f2d9939dd57394b83f6ccbd3e1a74659e34",
+                "reference": "89b57f2d9939dd57394b83f6ccbd3e1a74659e34",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zxing\\": "lib/"
+                },
+                "files": [
+                    "lib/Common/customFunctions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ashot Khanamiryan",
+                    "email": "a.khanamiryan@gmail.com",
+                    "homepage": "https://github.com/khanamiryan",
+                    "role": "Developer"
+                }
+            ],
+            "description": "QR code decoder / reader",
+            "homepage": "https://github.com/khanamiryan/php-qrcode-detector-decoder/",
+            "keywords": [
+                "barcode",
+                "qr",
+                "zxing"
+            ],
+            "time": "2020-04-19T16:18:51+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v7.17.2",
             "source": {
@@ -1414,6 +1464,48 @@
                 }
             ],
             "time": "2020-05-18T15:13:39+00:00"
+        },
+        {
+            "name": "libern/qr-code-reader",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/libern/qr-code-reader.git",
+                "reference": "b2c66969a3f7ceaf6f2c5476e52ed3f41d045090"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/libern/qr-code-reader/zipball/b2c66969a3f7ceaf6f2c5476e52ed3f41d045090",
+                "reference": "b2c66969a3f7ceaf6f2c5476e52ed3f41d045090",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Libern\\QRCodeReader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Libern Lin",
+                    "email": "libernlin@gmail.com"
+                }
+            ],
+            "description": "Simple PHP QR Code Reader / Decoder",
+            "homepage": "https://github.com/libern/qr-code-reader",
+            "keywords": [
+                "laravel",
+                "qr code decoder",
+                "qr code reader"
+            ],
+            "time": "2020-04-15T02:38:26+00:00"
         },
         {
             "name": "monolog/monolog",
