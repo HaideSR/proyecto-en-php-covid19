@@ -63,11 +63,14 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
 
-    <form action="{{url("decodificado")}}" method="POST">
+    <form action="{{url("decodificado")}}" method="GET">
         @csrf
         <input id="input" name="input" type="text" value="">
         <button type="submit">enviar</button>
     </form>
+
+    develop
+turama pull develop
   <button id="boton"> capturar</button>
   <script>
     var video = document.createElement("video");
@@ -115,6 +118,7 @@
         boton.addEventListener("click",function(){
           video.pause();
             input.value=dato;
+
         })
         if (code) {
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
@@ -125,7 +129,9 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           dato=code.data;
-         // window.location=url
+           /* if(dato){
+                window.location="{{url("decodificado")}}";
+            }*/
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
