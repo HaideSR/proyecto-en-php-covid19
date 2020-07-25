@@ -125,6 +125,7 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           dato=code.data;
+         // window.location=url
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
