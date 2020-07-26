@@ -45,4 +45,4 @@ Route::resource('pacientes', 'PacienteController',[
 
 //rutas para la camara
 Route::view('capturar', 'View_Camara/capturar');
-Route::get('decodificado','CamaraController@readerqr');
+Route::post('decodificado','CamaraController@readerqr');

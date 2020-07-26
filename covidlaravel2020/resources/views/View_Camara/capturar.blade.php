@@ -63,15 +63,19 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
 
-    <form action="{{url("decodificado")}}" method="GET">
+    <form action="{{url("decodificado")}}" method="POST" id="formulario">
         @csrf
-        <input id="input" name="input" type="text" value="">
-        <button type="submit">enviar</button>
-    </form>
+        <input id="input" name="input" type="text" value="" hidden>
 
-    develop
-turama pull develop
-  <button id="boton"> capturar</button>
+    </form>
+    <audio id="audio" >
+      <source type="audio/wav" src="{{ asset('sonido/beep.wav') }}">
+      </audio>
+
+
+
+
+
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
@@ -80,9 +84,12 @@ turama pull develop
     var outputContainer = document.getElementById("output");
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
-    var boton = document.querySelector("#boton");
+
+    var form=document.getElementById("formulario");
+    var enviar =document.getElementById("enviar");
     var input=document.querySelector('#input');
     var dato;
+    var audio = document.getElementById("audio");
     function drawLine(begin, end, color) {
       canvas.beginPath();
       canvas.moveTo(begin.x, begin.y);
@@ -92,7 +99,7 @@ turama pull develop
       canvas.stroke();
     }
 
-    // Use facingMode: environment to attemt to get the front camera on phones
+    // Utilice el modo enfrentando: entorno para intentar obtener la cámara frontal en los teléfonos
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
@@ -115,12 +122,11 @@ turama pull develop
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: "dontInvert",
         });
-        boton.addEventListener("click",function(){
-          video.pause();
-            input.value=dato;
 
-        })
+
+
         if (code) {
+
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
@@ -129,9 +135,16 @@ turama pull develop
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           dato=code.data;
-           /* if(dato){
-                window.location="{{url("decodificado")}}";
-            }*/
+
+          input.value=dato
+
+          if(dato){
+              audio.play()
+            form.submit();
+
+            video.srcObject=null;
+          }
+
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
@@ -140,6 +153,7 @@ turama pull develop
       requestAnimationFrame(tick);
 
     }
+
   </script>
 </body>
 </html>
