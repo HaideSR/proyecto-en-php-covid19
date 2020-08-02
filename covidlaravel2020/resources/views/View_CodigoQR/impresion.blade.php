@@ -1,8 +1,3 @@
-@extends('layouts.app')
-@section('title')
-Insertar paciente
-@endsection
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,4 +39,3 @@ Insertar paciente
     </div>
 </body>
 </html>
-@endsection
