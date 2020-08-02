@@ -1,8 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+Auth::routes();
+Route::resource('user', 'UserController');
+// Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,3 +33,11 @@ Route::resource('pacientes', 'PacienteController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
 
+
+
+// Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+//rutas para la camara
+Route::view('capturar', 'View_Camara/capturar');
+Route::post('decodificado','CamaraController@readerqr');
