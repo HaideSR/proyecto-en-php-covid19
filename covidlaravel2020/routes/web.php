@@ -33,8 +33,9 @@ Route::resource('pacientes', 'PacienteController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
 
-
-
+Route::resource('Ubicacion', 'UbicacionController',[
+    'only'         => ['index',"show","edit","store","update","create", "destroy"],
+]);
 // Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
