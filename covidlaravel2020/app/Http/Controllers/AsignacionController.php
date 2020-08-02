@@ -16,10 +16,10 @@ class AsignacionController extends Controller
     public function index()
     {
         $data=[
-            "Asignados" => Asignados::get()
+            "Asignados" => Asignados::get(),
         ];
         /*dd($data);*/
-        return view("view_Asignados.Asignacion",$data);
+        return view("view_Asignados.Asignados",$data);
     }
 
     /**
@@ -31,7 +31,8 @@ class AsignacionController extends Controller
     {
         $sql="SELECT id,remember_token,impreso,created_at FROM tablaqr WHERE id not IN (SELECT tablaqr_id FROM asignados)";
         $tablaQR = DB::select(DB::raw($sql));
-        $pacientes = Paciente::get();
+        $sql="SELECT id,nombre,apellido,CI,correo,Celular FROM pacientes WHERE id not IN (SELECT pacientes_id FROM asignados)";
+        $pacientes = DB::select(DB::raw($sql));
        return view('view_Asignados.Asignacion')->withPacientes($pacientes)->withTablaQR($tablaQR);
     }
 
@@ -43,11 +44,17 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        $Asignado = Paciente::create([
-            "pacientes_id"   => $input["pacientes_id"],
-            "tablaqr_id"=> $input["tabla_qr"], 
+        $data=[
+            "Asignados" => Asignados::get(),
+        ];
+        $input = $request->all();
+        $idpacientes=$input["paciente_id"];
+        $idtablaqr=$input["tablaqr_id"];
+        $Asignado=Asignados::create([
+            "tablaqr_id"   => $idtablaqr,
+            "pacientes_id"=> $idpacientes,
         ]);
-        return view("view_Asignados.Asignados")->withPaciente($Asignado); //
+        return view("view_Asignados.Asignados",$data); //
     }
 
     /**
