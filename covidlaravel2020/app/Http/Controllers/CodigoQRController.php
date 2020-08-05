@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\codigo_qr;
+
 use App\TablaQR;
 use Illuminate\Support\Str;
 class CodigoQRController extends Controller
@@ -35,6 +35,13 @@ class CodigoQRController extends Controller
         return view("View_CodigoQR.vistagenerar",$data);
     }
 
-
+    public function vistaCodigos(){
+        $data =[
+            "code"=>TablaQR::get()
+        ];
+        //muestra los datos como json
+        //dd($data);
+        return view("View_CodigoQR.vistaCodigosQR",$data);
+    }
 
 }

@@ -3,21 +3,14 @@
 Insertar paciente
 @endsection
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+
 <body>
     <div class="container">
  <div class="list-group">
       <div class="row justify-content-center">
       <div class="card">
                   <div class="card-header">{{ __('Generar codigos QR') }}</div>
-                    <div class="card-body"> 
+                    <div class="card-body">
     <form action="{{url("vistaqrgen")}}" method="GET">
 
             <input list="cantidadgen" name="cantidadgen" >
@@ -40,7 +33,10 @@ Insertar paciente
         </form>
     </div>
     <div>
-    <a href="{{route('imprimirTodo')}}"> imprimir todo</a>
+    <a  class="btn btn-info pull-right" href="{{route('imprimirTodo')}}"> Imprimir Codigos QR</a>
+    </div>
+    <div>
+        <a  class="btn btn-info pull-right" href="{{route('vistaCodigosQR')}}"> Ver Codigos</a>
     </div>
     <div>
         <table>
@@ -68,5 +64,5 @@ Insertar paciente
     </div>
     </div>
 </body>
-</html>
+
 @endsection

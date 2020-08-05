@@ -20,7 +20,7 @@ Route::get('offline/',function(){
 //Route::view('vistaqr','View_CodigoQR/vistaqr');
 Route::get('vistaqr/', 'CodigoQRController@mostrar');
 Route::get('vistaqrgen/', 'CodigoQRController@generar');
-
+Route::get('/vistaCodigosQR','CodigoQRController@vistaCodigos')->name('vistaCodigosQR');
 
 Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
 
