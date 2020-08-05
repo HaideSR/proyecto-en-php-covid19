@@ -66,7 +66,8 @@
     <form action="{{url("decodificado")}}" method="POST" id="formulario">
         @csrf
         <input id="input" name="input" type="text" value="" hidden>
-
+        <input id="latitud" name="latitud" type="text" value="" hidden>
+        <input id="longitud" name="longitud" type="text" value="" hidden>
     </form>
     <audio id="audio" >
       <source type="audio/wav" src="{{ asset('sonido/beep.wav') }}">
@@ -77,6 +78,11 @@
 
 
   <script>
+      navigator.geolocation.getCurrentPosition(function(position){
+        latitud.value=position.coords.latitude;
+        longitud.value=position.coords.longitude;
+
+        });
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
