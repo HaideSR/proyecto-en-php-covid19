@@ -1,3 +1,5 @@
+
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -63,25 +65,12 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
 
-    <form action="{{url("decodificado")}}" method="POST" id="formulario">
-        @csrf
-        <input id="input" name="input" type="text" value="" hidden>
-        <input id="latitud" name="latitud" type="text" value="" hidden>
-        <input id="longitud" name="longitud" type="text" value="" hidden>
-        <label for="temperatura">Temperatura :</label> <input type="text" id="temperatura" name="temperatura"><br>
-        <label for="oxigeno">Saturacion de Oxigeno :</label> <input type="text" id="oxigeno" name="oxigeno"><br>
-        <label for="frecuenciaC">Frecuencia Cardiaca :</label> <input type="text" id="frecuenciaC" name="frecuenciaC"><br>
-        <label for="estado">Estado de Salud :</label>
-        <select name="estado" id="estado" class="form-control">
-            <option value=""></option>
-            <option value="excelente">Me siento muy Bien</option>
-            <option value="bueno">Me siento Bien</option>
-            <option value="regular">Con una leve molestia</option>
-            <option value="mal">Me siento Mal</option>
-            <option value="muymal">Necesito Atencion Medica</option>
-        </select><br>
-        <button type="submit" id="boton">Enviar</button>
-    </form>
+  <form action="{{url("asignado")}}" method="post" id="formulario">
+    @csrf
+
+    <input id="input" name="input" type="text" value="" hidden>
+    <input id="id" name="id" type="text" value="{{$id}}" >
+</form>
     <div id="error">
 
     </div>
@@ -94,11 +83,7 @@
 
 
   <script>
-      navigator.geolocation.getCurrentPosition(function(position){
-        latitud.value=position.coords.latitude;
-        longitud.value=position.coords.longitude;
 
-        });
 
 
     var video = document.createElement("video");
@@ -153,34 +138,7 @@
           inversionAttempts: "dontInvert",
         });
 
-        form.addEventListener('submit',function(event){
 
-        var mensajesError=[];
-        if(temp.value===null || temp.value===''){
-            mensajesError.push('Ingrese Su Temperatura');
-            event.preventDefault();
-        }
-        if(oxigeno.value===null || oxigeno.value===''){
-            mensajesError.push('Ingrese Su Saturacion de Oxigeno');
-            event.preventDefault();
-        }
-        if(frecuenciaC.value===null || frecuenciaC.value===''){
-            mensajesError.push('Ingrese Su Frecuencia Cardiaca');
-            event.preventDefault();
-        }
-        if(estado.value===null || estado.value===''){
-            mensajesError.push('Ingrese Su Estado de salud');
-            event.preventDefault();
-        }
-        if(input.value===null || input.value===''){
-            mensajesError.push('No Escaneo el Codigo QR');
-            event.preventDefault();
-        }
-
-           error.innerHTML=mensajesError.join('<br>')
-
-
-    });
 
         if (code) {
 
@@ -196,9 +154,9 @@
           input.value=dato
 
           if(dato){
-            video.pause();
-              audio.play()
 
+              audio.play()
+            form.submit();
             video.srcObject=null;
           }
 

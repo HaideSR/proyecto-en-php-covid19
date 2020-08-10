@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Paciente;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class PacienteController extends Controller
 {
     /**
@@ -14,10 +14,19 @@ class PacienteController extends Controller
     public function index()
     {
         $data = [
-        "pacientes" => Paciente::get()   
+        "pacientes" => Paciente::get()
 
-        ]; //
-        return view("pacientes.listar", $data);
+        ];
+       $asignadospa=DB::table('asignados')->select('pacientes_id')->get();
+       $array=[];
+       foreach ($asignadospa as $key) {
+
+          array_push($array,$key->pacientes_id);
+       }
+       echo("<br>");
+        //dd($asignadospa);
+        //dd($array);
+        return view("pacientes.listar", $data)->witharray($array);
     }
 
     /**
@@ -45,9 +54,9 @@ class PacienteController extends Controller
             "CI"     => $input["ci"],
             "correo"     => $input["correo"],
             "Celular"     => $input["celular"],
-            
+
         ]);
-        return view("pacientes.ver")->withPaciente($paciente); // 
+        return view("pacientes.ver")->withPaciente($paciente); //
     }
 
     /**
@@ -86,7 +95,7 @@ class PacienteController extends Controller
         $paciente->apellido = $input["apellido"];
         $paciente->ci = $input["ci"];
         $paciente ->correo = $input["correo"];
-        $paciente->celular = $input["celular"];  
+        $paciente->celular = $input["celular"];
         if ($paciente->save()) {
             # code...
             return view("pacientes.ver")->withPaciente($paciente);

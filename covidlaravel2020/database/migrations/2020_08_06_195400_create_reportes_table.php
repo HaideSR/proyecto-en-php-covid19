@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoordenadas extends Migration
+class CreateReportesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateCoordenadas extends Migration
      */
     public function up()
     {
-        Schema::create('coordenadas', function (Blueprint $table) {
+        Schema::create('reportes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pacientes_id');
             $table->foreign('pacientes_id')->references('id')->on('pacientes');
-            $table->double('latitud', 20, 20);
-            $table->double('longitud', 20, 20);
+            $table->date('Fecha');
+            $table->dateTime('Hora', 0);
+            $table->integer('Temperatura');
+            $table->integer('Saturacion_de_Oxigeno');
+            $table->integer('Frecuencia_Cardiaca');
+            $table->char('Estado', 100);
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateCoordenadas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coordenadas');
+        Schema::dropIfExists('reportes');
     }
 }

@@ -17,6 +17,8 @@ class CamaraController extends Controller
 
         $input = $request->all();
         $codigoT=$input['input'];
+        echo($input['latitud']);
+        echo($input['longitud']);
         echo(var_dump($codigoT) );
         if(! empty($codigoT)){
 
@@ -35,7 +37,7 @@ class CamaraController extends Controller
             "token"=>$input['input'],
             "latitud"=>$input['latitud'],
             "longitud"=>$input['longitud']
-
+        hacer reporte
         ];*/
 
 

@@ -26,13 +26,11 @@ Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
 
 Route::resource('pacientes', 'PacienteController');
 
-Route::resource('Asignados', 'AsignacionController',[
-    'only'         => ['index',"show","edit","store","update","create", "destroy"],
-]);
+/*
 Route::resource('pacientes', 'PacienteController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
-
+*/
 Route::resource('Ubicacion', 'UbicacionController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
@@ -42,3 +40,16 @@ Route::resource('Ubicacion', 'UbicacionController',[
 //rutas para la camara
 Route::view('capturar', 'View_Camara/capturar');
 Route::post('decodificado','CamaraController@readerqr');
+
+
+//ruta asignar QR
+Route::get('asignar/{id}', function ($id) {
+    return view('view_Asignados/asignarQr')->withid($id);
+});
+Route::post('asignado','AsignacionController1@asignar');
+
+Route::get('verAsignados','AsignacionController1@mostrar');
+
+
+//rutas mapas
+Route::view('mapa', 'Ubicacion/mapa');

@@ -7,7 +7,7 @@ Lista de Pacientes
 <table class="table table-bordered table-striped">
 <div class="card">
 <div class="card-header">
-{{ __('Lista de pacientes') }} 
+{{ __('Lista de pacientes') }}
 <a class="btn btn-outline-primary  float-sm-right" href="{{ route('pacientes.create') }}">{{ __('Registrar') }}</a>
 </div>
 
@@ -18,10 +18,10 @@ Lista de Pacientes
         <th scope="col">CI</th>
         <th scope="col">Correo</th>
         <th scope="col">Numero de celular</th>
-        <th scope="col">Operaciones</th> 
+        <th scope="col">Operaciones</th>
         </tr>
         </thead>
-        
+
         @foreach($pacientes as $paciente)
         <tr>
         <td>{{$paciente->nombre}}</td>
@@ -31,7 +31,7 @@ Lista de Pacientes
         <td>{{$paciente->Celular}}</td>
         <td>
         <a href="{{route("pacientes.edit" , $paciente)}}"><button type="button" class="btn btn-outline-secondary">Editar</button></a>
-        
+
         <form action="{{url("pacientes", $paciente)}}" method="post" class="d-inline">
         {{csrf_field()}}
         {{method_field('DELETE')}}
@@ -39,10 +39,14 @@ Lista de Pacientes
         </form>
 
         <a href="{{route("pacientes.show" , $paciente)}}"><button type="button" class="btn btn-outline-info">Ver</button></a>
+        @if (!in_array($paciente->id, $array))
+        <a href="{{url('asignar',$paciente->id)}}"><button type="button" class="btn btn-outline-secondary">Asignar QR</button></a>
+        @endif
+
         </td>
         </tr>
     @endforeach
-    
+
 </table>
 </div>
 </div>
