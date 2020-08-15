@@ -16,9 +16,9 @@ class CreateCoordenadas extends Migration
         Schema::create('coordenadas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pacientes_id');
-            $table->foreign('pacientes_id')->references('id')->on('pacientes');
-            $table->double('latitud', 20, 20);
-            $table->double('longitud', 20, 20);
+            $table->foreign('pacientes_id')->references('id')->on('pacientes') ->onDelete('cascade');
+            $table->decimal('latitud',30,20);
+            $table->decimal('longitud',30,20);
             $table->timestamps();
         });
     }

@@ -14,9 +14,13 @@ Datos de paciente
   <div>{{('CI:')}} {{$paciente->CI}}</div>
   <div>{{('Correo:')}} {{$paciente->correo}}</div>
   <div>{{('Celular:')}} {{$paciente->Celular}}</div>
+
+</div>
+<a href="{{url('asignarUbicacion',$paciente->id)}}"><button type="button" class="btn btn-outline-danger">Asignar Ubcacion del Paciente</button></a>
 </div>
 </div>
 </div>
+
 </div>
-</div>
+
 @endsection

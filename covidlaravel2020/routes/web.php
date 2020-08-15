@@ -24,13 +24,15 @@ Route::get('/vistaCodigosQR','CodigoQRController@vistaCodigos')->name('vistaCodi
 
 Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
 
-Route::resource('pacientes', 'PacienteController');
+//Route::resource('pacientes', 'PacienteController');
+//URL pacientes y asignacion
+Route::post('asignarUbicacionPaciente','PacienteController@asignarUbicacion');
 
-/*
+
 Route::resource('pacientes', 'PacienteController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
-*/
+
 Route::resource('Ubicacion', 'UbicacionController',[
     'only'         => ['index',"show","edit","store","update","create", "destroy"],
 ]);
@@ -53,3 +55,7 @@ Route::get('verAsignados','AsignacionController1@mostrar');
 
 //rutas mapas
 Route::view('mapa', 'Ubicacion/mapa');
+
+Route::get('asignarUbicacion/{id}', function ($id) {
+    return view('pacientes/asignarUbicacion')->withid($id);
+});

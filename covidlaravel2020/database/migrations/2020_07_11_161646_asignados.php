@@ -16,10 +16,9 @@ class Asignados extends Migration
         Schema::create('asignados', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('tablaqr_id');
-            $table->foreign('tablaqr_id')->references('id')->on('tablaqr');
-            $table->unsignedBigInteger('pacientes_id');
-            $table->foreign('pacientes_id')->references('id')->on('pacientes');
+
+            $table->foreignId('tablaqr_id')->constrained('TablaQR')->onDelete('cascade');
+            $table->foreignId('pacientes_id')->constrained('pacientes')->onDelete('cascade');
             });
     }
 

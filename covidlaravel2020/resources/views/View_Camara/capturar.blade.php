@@ -50,6 +50,9 @@
     #noQRFound {
       text-align: center;
     }
+    #map {
+        height: 60%;
+      }
   </style>
 </head>
 <body>
@@ -62,7 +65,8 @@
     <div id="outputMessage">Codigo QR no detectado.</div>
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
-
+  <h1>Su ubicacion en el Mapa</h1>
+  <div id="map"></div>
     <form action="{{url("decodificado")}}" method="POST" id="formulario">
         @csrf
         <input id="input" name="input" type="text" value="" hidden>
@@ -92,13 +96,56 @@
 
 
 
-
   <script>
-      navigator.geolocation.getCurrentPosition(function(position){
-        latitud.value=position.coords.latitude;
-        longitud.value=position.coords.longitude;
-
+     var map, infoWindow,marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -15.4520662, lng: -81.9179391},
+          zoom: 18
         });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            latitud.value=pos.lat;
+            longitud.value=pos.lng;
+            //infoWindow.setPosition(pos);
+           // infoWindow.setContent('Location found.');
+            //infoWindow.open(map);
+            map.setCenter(pos);
+
+            marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'Usted esta aqui !!'
+             });
+
+
+
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
 
 
     var video = document.createElement("video");
@@ -211,6 +258,9 @@
 
     }
 
+  </script>
+  <script defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTSmqmNScpmUhBdcER7rLjqyKqsMMnH0&callback=initMap">
   </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Paciente;
+use App\Coordenada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class PacienteController extends Controller
@@ -112,6 +113,48 @@ class PacienteController extends Controller
     public function destroy(Paciente $paciente)
     {
         $paciente->delete();
-        return view("pacientes.ver")->withPaciente($paciente);
+        $data = [
+            "pacientes" => Paciente::get()
+
+            ];
+           $asignadospa=DB::table('asignados')->select('pacientes_id')->get();
+           $array=[];
+           foreach ($asignadospa as $key) {
+
+              array_push($array,$key->pacientes_id);
+           }
+           echo("<br>");
+            //dd($asignadospa);
+            //dd($array);
+            return view("pacientes.listar", $data)->witharray($array);
+    }
+
+
+
+    public function asignarUbicacion(Request $request){
+        $input = $request->all();
+        $latitud=$input['latitud'];
+        $longitud=$input['longitud'];
+        $id=$input['id'];
+        Coordenada::create([
+            "latitud"=>$latitud,
+            "longitud"=>$longitud,
+            "pacientes_id"=>$id
+        ]);
+
+        $data = [
+            "pacientes" => Paciente::get()
+
+            ];
+           $asignadospa=DB::table('asignados')->select('pacientes_id')->get();
+           $array=[];
+           foreach ($asignadospa as $key) {
+
+              array_push($array,$key->pacientes_id);
+           }
+           echo("<br>");
+            //dd($asignadospa);
+            //dd($array);
+            return view("pacientes.listar", $data)->witharray($array);
     }
 }

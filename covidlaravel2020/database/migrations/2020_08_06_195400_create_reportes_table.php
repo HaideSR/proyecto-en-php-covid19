@@ -16,13 +16,15 @@ class CreateReportesTable extends Migration
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pacientes_id');
-            $table->foreign('pacientes_id')->references('id')->on('pacientes');
+            $table->foreign('pacientes_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->date('Fecha');
-            $table->dateTime('Hora', 0);
+            $table->time('Hora');
             $table->integer('Temperatura');
             $table->integer('Saturacion_de_Oxigeno');
             $table->integer('Frecuencia_Cardiaca');
             $table->char('Estado', 100);
+            $table->decimal('latitud',30,20);
+            $table->decimal('longitud',30,20);
             $table->timestamps();
         });
     }
