@@ -30,7 +30,7 @@ Reportes De Hoy
         <th scope="col">Saturacion de Oxigeno</th>
         <th scope="col">Frecuencia Cariaca</th>
         <th scope="col">Estado de Salud</th>
-        <th scope="col">Fuerda Rango ?</th>
+        <th scope="col">Distancia entre su casa y reporte</th>
         <th scope="col">Ubicacion</th>
 
         </tr>
