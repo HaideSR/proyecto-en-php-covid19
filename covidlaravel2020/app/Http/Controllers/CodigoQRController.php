@@ -29,10 +29,14 @@ class CodigoQRController extends Controller
                 "impreso"=>false,
             ]);
         }
+
+       // return view("View_CodigoQR.vistagenerar",$data);
         $data =[
-            "codigos"=>TablaQR::where('impreso',0)->get()
+            "codigo"=>TablaQR::get()
         ];
-        return view("View_CodigoQR.vistagenerar",$data);
+        //muestra los datos como json
+        //dd($data);
+        return view("View_CodigoQR.vistaqr",$data);
     }
 
     public function vistaCodigos(){

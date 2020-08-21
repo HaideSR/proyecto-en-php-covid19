@@ -62,14 +62,14 @@
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
     <div id="outputMessage">Codigo QR no detectado.</div>
-    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    <div hidden><b>Aviso: </b> <span id="outputData"></span></div>
   </div>
 
   <form action="{{url("asignado")}}" method="post" id="formulario">
     @csrf
 
     <input id="input" name="input" type="text" value="" hidden>
-    <input id="id" name="id" type="text" value="{{$id}}" >
+    <input id="id" name="id" type="hidden" value="{{$id}} " >
 </form>
     <div id="error">
 
@@ -148,7 +148,7 @@
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
+          outputData.innerText = "capturado";
           dato=code.data;
 
           input.value=dato

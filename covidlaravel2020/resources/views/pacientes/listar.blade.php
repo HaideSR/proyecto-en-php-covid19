@@ -11,7 +11,9 @@ Lista de Pacientes
 <a class="btn btn-outline-primary  float-sm-right" href="{{ route('pacientes.create') }}">{{ __('Registrar') }}</a>
 <a class="btn btn-outline-primary  float-sm-right" href="{{ url('ReporteHoy') }}">{{ __('Reporte de hoy') }}</a>
 </div>
-
+    @if ($asignados ?? ''=='alerta')
+    <h1>QR YA ASIGNADO</h1>
+    @else
         <thead class="thead-dark">
         <tr>
         <th scope="col">Nombre</th>
@@ -46,9 +48,10 @@ Lista de Pacientes
 
         </td>
         </tr>
-    @endforeach
+        @endforeach
 
 </table>
+@endif
 </div>
 </div>
 </div>

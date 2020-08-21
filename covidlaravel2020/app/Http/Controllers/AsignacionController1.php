@@ -20,6 +20,7 @@ class AsignacionController1 extends Controller
 
     public function asignar(Request $request )
     {
+        $Asignados='';
         $input = $request->all();
         $idPaciente = $input['id'];
         $code = $input['input'];
@@ -42,18 +43,29 @@ class AsignacionController1 extends Controller
                     "pacientes_id"=> $idPaciente,
                 ]);
             }
-            $data=[
-                "Asignados" => Asignados::get(),
-            ];
+
         }else{
-            $data=[
-                "Asignados" =>"alerta",
-            ];
+
+            $Asignados='alerta';
         }
 
         /*dd($data);*/
-        return view("view_Asignados.Asignados",$data);
+       // return view("view_Asignados.Asignados",$data);
+        $data = [
+            "pacientes" => Paciente::get(),
+            "asignados"=> $Asignados
 
+            ];
+           $asignadospa=DB::table('asignados')->select('pacientes_id')->get();
+           $array=[];
+           foreach ($asignadospa as $key) {
+
+              array_push($array,$key->pacientes_id);
+           }
+           echo("<br>");
+            //dd($asignadospa);
+            //dd($array);
+            return view("pacientes.listar", $data)->witharray($array);
 
     }
 }
