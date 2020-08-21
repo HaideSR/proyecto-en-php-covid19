@@ -59,3 +59,10 @@ Route::view('mapa', 'Ubicacion/mapa');
 Route::get('asignarUbicacion/{id}', function ($id) {
     return view('pacientes/asignarUbicacion')->withid($id);
 });
+
+
+
+
+
+//REPORTESSSS
+Route::get('ReporteHoy', 'ReportesController@reportesHoy');

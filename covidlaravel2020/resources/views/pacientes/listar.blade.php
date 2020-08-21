@@ -9,6 +9,7 @@ Lista de Pacientes
 <div class="card-header">
 {{ __('Lista de pacientes') }}
 <a class="btn btn-outline-primary  float-sm-right" href="{{ route('pacientes.create') }}">{{ __('Registrar') }}</a>
+<a class="btn btn-outline-primary  float-sm-right" href="{{ url('ReporteHoy') }}">{{ __('Reporte de hoy') }}</a>
 </div>
 
         <thead class="thead-dark">

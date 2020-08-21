@@ -22,9 +22,10 @@
     <div id="map"></div>
     <form action="{{url("asignarUbicacionPaciente")}}" method="post" id="formulario">
         @csrf
-        <input id="latitud" name="latitud" type="text" value="" >
-        <input id="longitud" name="longitud" type="text" value="" >
-        <input id="id" name="id" type="text" value="{{$id}}" >
+        <input id="latitud" name="latitud" type="hidden" value="" >
+        <input id="longitud" name="longitud" type="hidden"  value="" >
+        <input id="id" name="id" type="hidden"  value="{{$id}}" >
+        <br>
         <button type="submit" class="btn btn-outline-secondary">Asignar Ubicacion del Paciente</button>
     </form>
     <script>

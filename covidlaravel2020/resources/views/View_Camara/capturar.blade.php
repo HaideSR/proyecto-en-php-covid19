@@ -62,8 +62,8 @@
   <div id="loadingMessage">🎥 No se puede acceder a la transmisión de video (asegúrese de tener una cámara web habilitada)</div>
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
-    <div id="outputMessage">Codigo QR no detectado.</div>
-    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+    <div id="outputMessage"><b>Aviso:</b>Codigo QR no detectado.</div>
+    <div hidden><b>Aviso:</b> <span id="outputData"></span></div>
   </div>
   <h1>Su ubicacion en el Mapa</h1>
   <div id="map"></div>
@@ -237,7 +237,7 @@
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
+          outputData.innerText = "Codigo QR Detectado";
           dato=code.data;
 
           input.value=dato

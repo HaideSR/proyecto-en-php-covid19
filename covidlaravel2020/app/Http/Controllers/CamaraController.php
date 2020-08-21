@@ -49,6 +49,19 @@ class CamaraController extends Controller
         ]);
 
 
-        return view("View_Camara/enviar")->withdata($data);
+        $data = [
+            "pacientes" => Paciente::get()
+
+            ];
+           $asignadospa=DB::table('asignados')->select('pacientes_id')->get();
+           $array=[];
+           foreach ($asignadospa as $key) {
+
+              array_push($array,$key->pacientes_id);
+           }
+           echo("<br>");
+            //dd($asignadospa);
+            //dd($array);
+            return view("pacientes.listar", $data)->witharray($array);
     }
 }
