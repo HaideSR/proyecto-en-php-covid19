@@ -1,6 +1,9 @@
 @extends('welcome')
 @section('Usuarios')
-<a href="/user/create" class="btn-s">Registrar nuevo </a>
+<div class="no-imprimir">
+    <a href="/user/create" class="btn-s">Registrar nuevo </a>
+    <a class="btn-s btn-green"  href="{{ route('imprimir') }}">Imprimir</a>
+</div>
 <table class="table">
     <tr>
        <th>N°</th>
@@ -17,7 +20,6 @@
      @foreach($users as $user)
             <tr>
                 <th scope="row">{{$user->id}}</th>
-                {{-- <td><a href="/tasks/{{$user->id}}">{{$user->title}}</a></td> --}}
                 <td>{{$user->nombres}}</td>
                 <td>{{$user->apellidopaterno}}</td>
                 <td>{{$user->apellidomaterno}}</td>
@@ -33,7 +35,6 @@
                         @method('DELETE')
                         <button class="btn-s btn-red" onclick="return confirm('¿Esta seguro de eliminar?')" type="submit">Eliminar</button>
                       </form>
-                    {{-- <a class="btn-s btn-red" href="user/destroy/{{$user->id}}">Eliminar</a> --}}
                     <a class="btn-s btn-green" href="user/{{$user->id}}/edit">Editar</a>
                 </td>
             </tr>
