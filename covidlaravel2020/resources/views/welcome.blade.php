@@ -7,8 +7,9 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/print.css') }}" media="print">
 
         <!-- Styles -->
 
@@ -59,19 +60,6 @@
     <body>
         @yield('content')
         <div class="flex-center position-ref full-height">
-            {{-- @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif --}}
             <main class="flex">
 
                 @auth
@@ -111,7 +99,7 @@
                         @yield('Usuarios')
                     </div>
                     @else
-
+                    {{-- @yield('Usuarios') --}}
                         <script>window.location = "/login";</script>
                         {{-- {{ Route::view('/login', 'auth.login') }} --}}
                         {{-- {{(Route::view('/login','auth.login'))}} --}}

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::resource('user', 'UserController');
-// Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('/imprimir', 'imprimirController@imprimir')->name('imprimir');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -66,3 +66,4 @@ Route::get('asignarUbicacion/{id}', function ($id) {
 
 //REPORTESSSS
 Route::get('ReporteHoy', 'ReportesController@reportesHoy');
+// Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
