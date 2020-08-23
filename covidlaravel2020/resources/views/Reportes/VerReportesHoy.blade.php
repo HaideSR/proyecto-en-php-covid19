@@ -15,7 +15,7 @@ Reportes De Hoy
     <div class="card">
     <div class="card-header">
     {{ __('Reportes del dia De Hoy') }}
-
+    <a class="btn btn-outline-primary  float-sm-right" href="{{ url('imprimirReporte') }}">{{ __('Imprimir Reporte') }}</a>
     </div>
 
         <thead class="thead-dark">
@@ -163,19 +163,41 @@ Reportes De Hoy
                         zoom: 18
                         });
 
+                        var suCasa="Ubicacion de la casa del paciente"
+                        var suReporte="Ubicacion Reporte del paciente"
+                        var infowindow = new google.maps.InfoWindow({
+                                content: suReporte
+                            });
+                            var imagen={
+                                url: '/images/iconMap/1.png',
+                                size: new google.maps.Size(71, 71),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(25, 34),
+                                scaledSize: new google.maps.Size(50, 50)
+                            };
                         marker = new google.maps.Marker({
                             position: loc1,
                             map: map,
 
                             title: 'Ubicacion del Reporte'
                             });
+
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                        var infowindow2 = new google.maps.InfoWindow({
+                                content: suCasa
+                            });
+
                         marker2 = new google.maps.Marker({
                             position: loc2,
                             map: map,
-
+                            icon:imagen,
                             title: 'Ubicacion del Paciente'
                          });
-
+                         marker2.addListener('click', function() {
+                            infowindow2.open(map, marker2);
+                        });
                          map.setCenter(loc2);
                             poly = new google.maps.Polyline({
                                 strokeColor: "#FF0000",
