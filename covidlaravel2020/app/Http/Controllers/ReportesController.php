@@ -21,4 +21,40 @@ class ReportesController extends Controller
 
         return view("Reportes/VerReportesHoy")->withdata($data);
     }
+
+    public function ubicacionMapa(){
+
+        $data=DB::table('pacientes')
+           ->join('coordenadas', 'pacientes.id', '=', 'coordenadas.pacientes_id')
+           ->select('pacientes.id','pacientes.nombre','pacientes.apellido','pacientes.CI','pacientes.Celular','coordenadas.latitud','coordenadas.longitud')
+            ->get();
+
+        	//creamos el documento xml
+            $dom = new \DOMDocument("1.0",'UTF-8');
+            $node = $dom->createElement("markers");
+            $parnode = $dom->appendChild($node);
+
+
+
+
+          foreach ($data as $key) {
+            $node = $dom->createElement("marker");
+            $newnode = $parnode->appendChild($node);
+            $newnode->setAttribute("id",$key->id);
+            $newnode->setAttribute("nombre",$key->nombre);
+            $newnode->setAttribute("apellido",$key->apellido);
+            $newnode->setAttribute("CI",$key->CI);
+            $newnode->setAttribute("Celular",$key->Celular);
+            $newnode->setAttribute("latitud",$key->latitud);
+            $newnode->setAttribute("longitud",$key->longitud);
+          }
+
+         //$xml= $dom->saveXML();
+        $ruta=public_path()."/storage/miarchivo.xml";
+          $dom->save($ruta);
+         // \Storage::disk('local')->put('archivo.xml',$xml);
+         // dd($dom->saveXML());
+
+        return view("Reportes/mapTotal");
+    }
 }

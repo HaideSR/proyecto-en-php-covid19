@@ -2,6 +2,16 @@
 
 @section('content')
 
-    <h1>You are currently not connected to any networks.</h1>
-<h2>la pagina no funciona</h2>
+<div class="blog-masthead">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <img class="img-fluid" src="{{ asset('imagenes/fueraLine/offline.jpg') }}" alt="Offline">
+                <div class="alert alert-light alert-important">
+                    <h1 class="text-center">asas</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

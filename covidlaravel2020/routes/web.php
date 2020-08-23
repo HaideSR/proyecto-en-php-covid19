@@ -23,7 +23,7 @@ Route::get('vistaqrgen/', 'CodigoQRController@generar');
 Route::get('/vistaCodigosQR','CodigoQRController@vistaCodigos')->name('vistaCodigosQR');
 
 Route::get('/pdfTods','PDFController@imprimirTodo')->name('imprimirTodo');
-
+Route::get('/imprimirReporte','PDFController@imprimirReporte');
 //Route::resource('pacientes', 'PacienteController');
 //URL pacientes y asignacion
 Route::post('asignarUbicacionPaciente','PacienteController@asignarUbicacion');
@@ -66,3 +66,4 @@ Route::get('asignarUbicacion/{id}', function ($id) {
 
 //REPORTESSSS
 Route::get('ReporteHoy', 'ReportesController@reportesHoy');
+Route::get('ubicTodos', 'ReportesController@ubicacionMapa');

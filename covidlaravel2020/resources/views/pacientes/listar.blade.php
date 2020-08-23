@@ -10,6 +10,7 @@ Lista de Pacientes
 {{ __('Lista de pacientes') }}
 <a class="btn btn-outline-primary  float-sm-right" href="{{ route('pacientes.create') }}">{{ __('Registrar') }}</a>
 <a class="btn btn-outline-primary  float-sm-right" href="{{ url('ReporteHoy') }}">{{ __('Reporte de hoy') }}</a>
+<a class="btn btn-outline-primary  float-sm-right" href="{{ url('ubicTodos') }}">{{ __('ver ubicacion de todos los pacientes') }}</a>
 </div>
     @if ($asignados ?? ''=='alerta')
     <h1>QR YA ASIGNADO</h1>
