@@ -229,13 +229,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-<<<<<<< HEAD
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
-=======
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
->>>>>>> 932cebf85d7809d5a9ec7a1d676d18577f2af608
     ],
 
 ];

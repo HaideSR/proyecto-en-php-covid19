@@ -18,26 +18,54 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @laravelPWA
+    <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
+    {{-- @laravelPWA --}}
+{{--  --}}
+
 </head>
 <body>
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <a class="navbar-brand" href="{{ url('vistaqr')}}">
-                    {{('QR Adinistracion')}}
+                @auth
+                <ul class="navbar-nav ml-auto">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
                     </a>
-                <a class="navbar-brand" href="{{ route('pacientes.index')}}">
-                {{('Lista de pacientes')}}
-                </a>
+                    <a class="navbar-brand" href="{{ url('vistaqr')}}">
+                        {{('QR Adinistracion')}}
+                        </a>
+                    <a class="navbar-brand" href="{{ route('pacientes.index')}}">
+                    {{('Lista de pacientes')}}
+                    </a>
+                    {{--  --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user">{{ __('Usuarios') }}</a>
+                        </li>
+                </ul>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <span>{{auth()->user()->nombres}}</span>
+                    </ul>
+                    {{--  --}}
+                    <div  aria-labelledby="navbarDropdown">
+                        <a class="  btn-s btn-red" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar sesión') }}
+                        </a>
 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+                @else
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -60,11 +88,11 @@
                             <!--@if (Route::has('Registrar'))-->
 
                             <!--@endif-->
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -86,6 +114,8 @@
                         @endguest
                     </ul>
                 </div>
+                @endauth
+
             </div>
         </nav>
 

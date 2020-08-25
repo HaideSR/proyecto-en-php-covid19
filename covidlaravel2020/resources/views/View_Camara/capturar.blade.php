@@ -1,102 +1,70 @@
+
+@extends('layouts.app')
+@section('content')
 <html>
 <head>
   <meta charset="utf-8">
 
   <script src="{{ asset('js/jsQR.js') }}"></script>
   <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Ropa Sans', sans-serif;
-      color: #333;
-      max-width: 640px;
-      margin: 0 auto;
-      position: relative;
-    }
 
-    #githubLink {
-      position: absolute;
-      right: 0;
-      top: 12px;
-      color: #2D99FF;
-    }
-
-    h1 {
-      margin: 10px 0;
-      font-size: 40px;
-    }
-
-    #loadingMessage {
-      text-align: center;
-      padding: 40px;
-      background-color: #eee;
-    }
-
-    #canvas {
-      width: 100%;
-    }
-
-    #output {
-      margin-top: 20px;
-      background: #eee;
-      padding: 10px;
-      padding-bottom: 0;
-    }
-
-    #output div {
-      padding-bottom: 10px;
-      word-wrap: break-word;
-    }
-
-    #noQRFound {
-      text-align: center;
-    }
-    #map {
-        height: 60%;
-      }
-  </style>
 </head>
 <body>
-  <h1>Enfoca el codigo qr y captura la imagen</h1>
+    <div class="box-capturar">
+        <h1>Enfoca el codigo qr y captura la imagen</h1>
+        <div id="loadingMessage">🎥 No se puede acceder a la transmisión de video (asegúrese de tener una cámara web habilitada)</div>
+        <canvas id="canvas" hidden></canvas>
+        <div id="output" hidden>
+            <div id="outputMessage"><b>Aviso:</b>Codigo QR no detectado.</div>
+            <div hidden><b>Aviso:</b> <span id="outputData"></span></div>
+        </div>
+        <h1>Su ubicacion en el Mapa</h1>
+        <div id="map"></div>
+        <form action="{{url("decodificado")}}" method="POST" id="formulario">
+            @csrf
+            <input id="input" name="input" type="text" value="" hidden>
+            <input id="latitud" name="latitud" type="text" value="" hidden>
+            <input id="longitud" name="longitud" type="text" value="" hidden>
+            {{-- <label for="temperatura">Temperatura :</label> <input type="text" id="temperatura" name="temperatura"><br> --}}
+            {{-- <label for="oxigeno">Saturacion de Oxigeno :</label> <input type="text" id="oxigeno" name="oxigeno"><br> --}}
 
+            <div class="form-group row">
+                <label for="temperatura" class="col-sm-2 col-form-label col-form-label-sm">Temperatura:</label>
+                <input type="text" id="temperatura" name="temperatura" class="col-sm-10 form-control form-control-sm">
+            </div>
 
-  <div id="loadingMessage">🎥 No se puede acceder a la transmisión de video (asegúrese de tener una cámara web habilitada)</div>
-  <canvas id="canvas" hidden></canvas>
-  <div id="output" hidden>
-    <div id="outputMessage"><b>Aviso:</b>Codigo QR no detectado.</div>
-    <div hidden><b>Aviso:</b> <span id="outputData"></span></div>
-  </div>
-  <h1>Su ubicacion en el Mapa</h1>
-  <div id="map"></div>
-    <form action="{{url("decodificado")}}" method="POST" id="formulario">
-        @csrf
-        <input id="input" name="input" type="text" value="" hidden>
-        <input id="latitud" name="latitud" type="text" value="" hidden>
-        <input id="longitud" name="longitud" type="text" value="" hidden>
-        <label for="temperatura">Temperatura :</label> <input type="text" id="temperatura" name="temperatura"><br>
-        <label for="oxigeno">Saturacion de Oxigeno :</label> <input type="text" id="oxigeno" name="oxigeno"><br>
-        <label for="frecuenciaC">Frecuencia Cardiaca :</label> <input type="text" id="frecuenciaC" name="frecuenciaC"><br>
-        <label for="estado">Estado de Salud :</label>
-        <select name="estado" id="estado" class="form-control">
-            <option value=""></option>
-            <option value="excelente">Me siento muy Bien</option>
-            <option value="bueno">Me siento Bien</option>
-            <option value="regular">Con una leve molestia</option>
-            <option value="mal">Me siento Mal</option>
-            <option value="muymal">Necesito Atencion Medica</option>
-        </select><br>
-        <button type="submit" id="boton">Enviar</button>
-    </form>
-    <div id="error">
+            <div class="form-group row">
+                <label for="oxigeno" class="col-sm-2 col-form-label col-form-label-sm">Saturacion de Oxigeno:</label>
+                <input type="text" id="oxigeno" name="oxigeno" class=" col-sm-10 form-control form-control-sm">
+            </div>
 
+            <div class="form-group row">
+                <label for="frecuenciaC" class="col-sm-2 col-form-label col-form-label-sm">Frecuencia Cardiaca:</label>
+                <input type="text" id="frecuenciaC" name="frecuenciaC"  class="col-sm-10 form-control form-control-sm">
+            </div>
+            <div class="form-group row">
+                <label for="estado" class="col-sm-2 col-form-label col-form-label-sm">Estado de salud:</label>
+                <div class="col-sm-10">
+                    <select name="estado" id="estado" class="form-control form-control-sm">
+                        <option value=""></option>
+                        <option value="excelente">Me siento muy Bien</option>
+                        <option value="bueno">Me siento Bien</option>
+                        <option value="regular">Con una leve molestia</option>
+                        <option value="mal">Me siento Mal</option>
+                        <option value="muymal">Necesito Atencion Medica</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" id="boton" class="btn btn-success">Enviar</button>
+        </form>
+        <div id="error"></div>
+        <audio id="audio" >
+          <source type="audio/wav" src="{{ asset('sonido/beep.wav') }}">
+        </audio>
     </div>
-    <audio id="audio" >
-      <source type="audio/wav" src="{{ asset('sonido/beep.wav') }}">
-      </audio>
 
-
-
-
-  <script>
+  <script  type="application/javascript">
      var map, infoWindow,marker;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -259,8 +227,10 @@
     }
 
   </script>
-  <script defer
+  <script  type="application/javascript" defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTSmqmNScpmUhBdcER7rLjqyKqsMMnH0&callback=initMap">
   </script>
 </body>
 </html>
+
+@endsection

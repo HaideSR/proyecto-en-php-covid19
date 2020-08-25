@@ -1,36 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 60%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <form action="{{url("asignarUbicacionPaciente")}}" method="post" id="formulario">
-        @csrf
-        <input id="latitud" name="latitud" type="hidden" value="" >
-        <input id="longitud" name="longitud" type="hidden"  value="" >
-        <input id="id" name="id" type="hidden"  value="{{$id}}" >
-        <br>
-        <button type="submit" class="btn btn-outline-secondary">Asignar Ubicacion del Paciente</button>
-    </form>
-    <script>
-
-
+@extends('layouts.app')
+@section('content')
+<div class="card text-center box--map">
+    <div class="card-header">
+      Asignar Ubicación
+    </div>
+    <div>
+        <div id="map"></div>
+        <form action="{{url("asignarUbicacionPaciente")}}" method="post" id="formulario">
+            @csrf
+            <input id="latitud" name="latitud" type="hidden" value="" >
+            <input id="longitud" name="longitud" type="hidden"  value="" >
+            <input id="id" name="id" type="hidden"  value="{{$id}}" >
+            <br>
+            <button type="submit" class="btn btn-info">Asignar Ubicacion del Paciente</button>
+        </form>
+    </div>
+</div>
+<script type="application/javascript" defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTSmqmNScpmUhBdcER7rLjqyKqsMMnH0&callback=initMap">
+    </script>
+    <script type="application/javascript">
         var latitud = document.getElementById('latitud');
         var longitud = document.getElementById('longitud');
       // Note: This example requires that you consent to location sharing when
@@ -113,8 +102,5 @@
 
 
     </script>
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTSmqmNScpmUhBdcER7rLjqyKqsMMnH0&callback=initMap">
-    </script>
-  </body>
-</html>
+
+@endsection

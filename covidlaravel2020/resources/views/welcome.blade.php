@@ -10,8 +10,8 @@
         {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/print.css') }}" media="print">
-
-        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <style>
 
             .full-height {
                 height: 100vh;
@@ -83,8 +83,8 @@
                             <div class="flex">
                                 <span>{{auth()->user()->nombres}}</span>
                                 {{-- <a href="{{ route('logout') }}">Cerrar sesión</a> --}}
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item btn-s btn-red" href="{{ route('logout') }}"
+                                <div  aria-labelledby="navbarDropdown">
+                                    <a class="  btn-s btn-red" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}

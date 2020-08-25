@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
+//rutas de los usuarios
 Auth::routes();
 Route::resource('user', 'UserController');
 Route::get('/imprimir', 'imprimirController@imprimir')->name('imprimir');
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 Route::get('offline/',function(){
     return view('vendor/laravelpwa/offline');

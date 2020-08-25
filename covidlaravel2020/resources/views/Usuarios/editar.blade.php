@@ -1,5 +1,5 @@
-@extends('welcome')
-@section('Usuarios')
+@extends('layouts.app')
+@section('content')
     <form action="{{ url("/user/".$user->id) }}" method="POST">
         {{csrf_field()}}
         @method('PATCH')
